@@ -76,8 +76,14 @@ function App() {
     (async() => {
       try{
         const url = 'http://localhost:8080/purchase/order/pay';
-        const response = await axiosBaseURL.post(url);
-        log.console(response);
+        const response = await axiosBaseURL.post(url, {
+            "price": 10000,
+            "amount": 2,
+            "itemId": 1,
+            "usePoint": 100
+        });
+        console.log(response);
+        window.location.href = response.data.next_redirect_pc_url;
       } catch(error) {
         console.log(error)
       }
